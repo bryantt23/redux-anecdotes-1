@@ -1,5 +1,6 @@
 import { useSelector, useDispatch } from 'react-redux'
 import AnecdoteForm from './AnecdoteForm';
+import Filter from './Filter';
 
 const voteOnAnecdote = id => {
     return {
@@ -9,7 +10,8 @@ const voteOnAnecdote = id => {
 };
 
 const AnecdoteList = () => {
-    const anecdotes = useSelector(state => state)
+    const anecdotes = useSelector(state => state.anecdotes)
+    const filterText = useSelector(state => state.filter)
     const dispatch = useDispatch()
 
     const vote = (id) => {
@@ -19,7 +21,8 @@ const AnecdoteList = () => {
     return (
         <div>
             <h2>Anecdotes</h2>
-            {anecdotes.map(anecdote =>
+            <Filter />
+            {anecdotes.filter(anecdote => anecdote.content.includes(filterText.filterText.text)).map(anecdote =>
                 <div key={anecdote.id}>
                     <div>
                         {anecdote.content}
@@ -30,7 +33,6 @@ const AnecdoteList = () => {
                     </div>
                 </div>
             )}
-            <AnecdoteForm />
         </div>
     )
 }
