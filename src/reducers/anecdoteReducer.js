@@ -36,6 +36,9 @@ const reducer = (state = initialState, action) => {
       const anecdote = stateCopy.find(a => a.id === action.payload.id)
       anecdote.votes++;
       return stateCopy;
+    case 'NEW_ANECDOTE':
+      state = state.concat(asObject(action.payload.content))
+      return state;
     default:
       return state;
   }
