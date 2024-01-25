@@ -17,20 +17,6 @@ const asObject = anecdote => {
   };
 };
 
-export const voteOnAnecdote = id => {
-  return {
-    type: 'VOTE_ON_ANECDOTE',
-    payload: { id }
-  };
-};
-
-export const createAnecdote = (content) => {
-  return {
-    type: 'NEW_ANECDOTE',
-    payload: content
-  };
-};
-
 const getAnecdotesSortedByVotes = (a, b) => b.votes - a.votes
 
 const initialState = anecdotesAtStart.map(asObject).sort(getAnecdotesSortedByVotes);
