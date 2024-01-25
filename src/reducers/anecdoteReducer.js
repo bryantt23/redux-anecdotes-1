@@ -24,6 +24,13 @@ export const voteOnAnecdote = id => {
   };
 };
 
+export const createAnecdote = (content) => {
+  return {
+    type: 'NEW_ANECDOTE',
+    payload: content
+  };
+};
+
 const initialState = anecdotesAtStart.map(asObject);
 console.log("🚀 ~ initialState:", initialState)
 
@@ -37,7 +44,7 @@ const reducer = (state = initialState, action) => {
       anecdote.votes++;
       return stateCopy;
     case 'NEW_ANECDOTE':
-      state = state.concat(asObject(action.payload.content))
+      state = state.concat(asObject(action.payload))
       return state;
     default:
       return state;
