@@ -13,7 +13,7 @@ const asObject = anecdote => {
   return {
     content: anecdote,
     id: getId(),
-    votes: 0
+    votes: (10 * Math.random()).toFixed(0)
   };
 };
 
@@ -31,7 +31,9 @@ export const createAnecdote = (content) => {
   };
 };
 
-const initialState = anecdotesAtStart.map(asObject);
+const getAnecdotesSortedByVotes = (a, b) => b.votes - a.votes
+
+const initialState = anecdotesAtStart.map(asObject).sort(getAnecdotesSortedByVotes);
 console.log("🚀 ~ initialState:", initialState)
 
 const reducer = (state = initialState, action) => {
@@ -42,11 +44,12 @@ const reducer = (state = initialState, action) => {
       const stateCopy = [...state]
       const anecdote = stateCopy.find(a => a.id === action.payload.id)
       anecdote.votes++;
-      return stateCopy;
+      return stateCopy.sort(getAnecdotesSortedByVotes);
     case 'NEW_ANECDOTE':
       state = state.concat(asObject(action.payload))
       return state;
     default:
+      state = [...state].sort((a, b) => b.votes - a.votes)
       return state;
   }
 
