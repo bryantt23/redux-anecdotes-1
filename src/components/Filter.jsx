@@ -1,11 +1,5 @@
 import { useDispatch } from 'react-redux'
-
-const filterAnecdote = text => {
-    return {
-        type: 'FILTER_ANECDOTE',
-        payload: { text }
-    };
-};
+import { filterAnecdote } from '../reducers/filterReducer'
 
 const Filter = () => {
     const dispatch = useDispatch()

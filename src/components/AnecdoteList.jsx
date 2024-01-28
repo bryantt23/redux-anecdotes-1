@@ -22,7 +22,7 @@ const AnecdoteList = () => {
         <div>
             <h2>Anecdotes</h2>
             <Filter />
-            {anecdotes.filter(anecdote => anecdote.content.includes(filterText.filterText.text)).map(anecdote =>
+            {anecdotes.filter(anecdote => anecdote.content.includes(filterText.filterText)).map(anecdote =>
                 <div key={anecdote.id}>
                     <div>
                         {anecdote.content}
