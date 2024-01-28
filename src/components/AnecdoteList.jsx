@@ -1,13 +1,6 @@
 import { useSelector, useDispatch } from 'react-redux'
-import AnecdoteForm from './AnecdoteForm';
 import Filter from './Filter';
-
-const voteOnAnecdote = id => {
-    return {
-        type: 'VOTE_ON_ANECDOTE',
-        payload: { id }
-    };
-};
+import { voteOnAnecdote } from '../reducers/anecdoteReducer'
 
 const AnecdoteList = () => {
     const anecdotes = useSelector(state => state.anecdotes)
