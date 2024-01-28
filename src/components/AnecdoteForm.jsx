@@ -8,7 +8,8 @@ function AnecdoteForm() {
     const addAnecdote = async (event) => {
         event.preventDefault()
         const content = event.target.anecdote.value
-        dispatch(createAnecdote(content))
+        const newAnecdote = { content, votes: 0 }
+        dispatch(createAnecdote(newAnecdote))
         dispatch(showNotification(`Added anecdote: ${content}`))
         dispatch(hideNotificationWithTimeout(3000))
     }
