@@ -1,6 +1,7 @@
 import { useSelector, useDispatch } from 'react-redux'
 import Filter from './Filter';
 import { voteOnAnecdote } from '../reducers/anecdoteReducer'
+import Notification from './Notification';
 
 const AnecdoteList = () => {
     const anecdotes = useSelector(state => state.anecdotes)
@@ -13,6 +14,7 @@ const AnecdoteList = () => {
 
     return (
         <div>
+            <Notification />
             <h2>Anecdotes</h2>
             <Filter />
             {anecdotes.filter(anecdote => anecdote.content.includes(filterText.filterText)).map(anecdote =>

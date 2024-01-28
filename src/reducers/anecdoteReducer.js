@@ -11,7 +11,6 @@ const anecdotesAtStart = [
 
 const getId = () => (100000 * Math.random()).toFixed(0);
 
-
 const asObject = (anecdote, index = 0) => {
   return {
     content: anecdote,
@@ -25,21 +24,6 @@ const getAnecdotesSortedByVotes = (a, b) => b.votes - a.votes
 const initialState = anecdotesAtStart
   .map((anecdote, index) => asObject(anecdote, index))
   .sort((a, b) => b.votes - a.votes);
-
-const anecdoteReducer = (state = initialState, action) => {
-  console.log('state now: ', state);
-  console.log('action', action);
-  switch (action.type) {
-    case 'NEW_ANECDOTE':
-      const newAnecdote = asObject(action.payload)
-      return [...state, newAnecdote];
-    default:
-      state = [...state].sort((a, b) => b.votes - a.votes)
-      return state;
-  }
-
-};
-
 
 const anecdoteSlice = createSlice({
   name: 'anecdotes',
